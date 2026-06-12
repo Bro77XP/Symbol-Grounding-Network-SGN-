@@ -23,13 +23,9 @@ You can also see how it works through the Command "recognize."
 shapelang> recognize A
 
   ─── Letter 1: 'A' ───
-    ██████
-  ██      ██
-██          ██
-██████████████
-██          ██
-██          ██
-██          ██
+
+  *shows A or something lol idk*
+
   Features (19):
     endpoints                 =   2.0000
     intersections             =   8.0000
