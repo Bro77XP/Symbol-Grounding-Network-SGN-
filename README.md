@@ -10,6 +10,7 @@ Each letter is a 7×7 binary grid (numpy array). Hand-crafted to capture the ess
 
 Example for 'A':
 
+```text
 0 0 1 1 1 0 0
 0 1 0 0 0 1 0
 1 0 0 0 0 0 1
@@ -17,6 +18,7 @@ Example for 'A':
 1 0 0 0 0 0 1
 1 0 0 0 0 0 1
 1 0 0 0 0 0 1
+```
 
 You can also see how it works through the Command "recognize."
 
@@ -24,7 +26,17 @@ shapelang> recognize A
 
   ─── Letter 1: 'A' ───
 
-  *shows A or something lol idk*
+  ### Letter 2: 'A'
+
+```text
+    ██████
+  ██      ██
+██          ██
+██████████████
+██          ██
+██          ██
+██          ██
+```
 
   Features (19):
     endpoints                 =   2.0000
@@ -58,33 +70,36 @@ All 26 letters are defined this way. Includes a function get_all_grids() returni
    - **TransformerDecoder sentence model**: 4 heads, 3 layers, 128-dim
 5. A **CFG grammar** with 184-word vocabulary, POS tags, auxiliary verbs, and question rules enables sentence parsing and generation
 
+## ShapeLang Architecture
 
+```text
 ┌─────────────────────────────────────────────────────────────┐
-│                     ShapeLang Pipeline                       │
+│                     ShapeLang Pipeline                      │
 ├─────────────────────────────────────────────────────────────┤
-│                                                              │
+│                                                             │
 │  ┌──────────┐    ┌───────────────┐    ┌──────────────────┐  │
-│  │ 7x7 Grid │───▶│    Feature    │───▶│  PyTorch MLP     │  │
-│  │ (pixels) │    │   Extractor   │    │  (26 classes)    │  │
+│  │ 7x7 Grid │───▶│    Feature    │───▶│   PyTorch MLP    │  │
+│  │ (pixels) │    │   Extractor   │    │   (26 classes)   │  │
 │  └──────────┘    │ (15 features) │    └────────┬─────────┘  │
-│                  └───────────────┘             │             │
-│                                                ▼             │
-│                                       ┌──────────────────┐   │
-│                                       │  Letter → Word   │   │
-│                                       │  拼写 Spell)     │   │
-│                                       └────────┬─────────┘   │
-│                                                ▼             │
-│                  ┌───────────────┐    ┌──────────────────┐   │
-│                  │   Grammar     │◀──▶│   Vocabulary     │   │
-│                  │   (CFG)       │    │  (word meanings) │   │
-│                  └───────┬───────┘    └──────────────────┘   │
-│                          ▼                                   │
-│                 ┌────────────────────┐                       │
-│                 │ Sentence Generator │                       │
-│                 │ & Parser           │                       │
-│                 └────────────────────┘                       │
-│                                                              │
+│                  └───────────────┘             │            │
+│                                                ▼            │
+│                                       ┌──────────────────┐  │
+│                                       │  Letter → Word   │  │
+│                                       │    Spelling      │  │
+│                                       └────────┬─────────┘  │
+│                                                ▼            │
+│                  ┌───────────────┐    ┌──────────────────┐  │
+│                  │    Grammar    │◀──▶│   Vocabulary     │  │
+│                  │     (CFG)     │    │ (word meanings)  │  │
+│                  └───────┬───────┘    └──────────────────┘  │
+│                          ▼                                  │
+│                 ┌────────────────────┐                      │
+│                 │ Sentence Generator │                      │
+│                 │     & Parser       │                      │
+│                 └────────────────────┘                      │
+│                                                             │
 └─────────────────────────────────────────────────────────────┘
+```
 
 ## Commands
 
