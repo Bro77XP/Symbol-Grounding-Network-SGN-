@@ -26,8 +26,6 @@ shapelang> recognize A
 
   ─── Letter 1: 'A' ───
 
-  ### Letter 2: 'A'
-
 ```text
     ██████
   ██      ██
