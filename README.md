@@ -5,8 +5,7 @@ An AI that learns language from the **visual shapes of alphabet letters** using 
 ## How It Works
 
 1. **26 binary 7×7 grids** define each letter's canonical shape (A–Z)
-2. 
-Each letter is a 7×7 binary grid (numpy array). Hand-crafted to capture the essential shape of each letter.
+2. Each letter is a 7×7 binary grid (numpy array). Hand-crafted to capture the essential shape of each letter.
 
 Example for 'A':
 
